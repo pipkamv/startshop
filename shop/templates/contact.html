@@ -1,0 +1,261 @@
+{% extends "index.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+    <!-- Menu title -->
+    <section id="page-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="restaurent-menu-title">
+                        <h2 class="primery-title">Subtitle here</h2>
+                        <h3 class="secondery-title">Связатся с нами</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-inner padding-top-xlg">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="title-center text-center contact">
+                                    <h2>Отправить письмо</h2>
+                                    <hr />
+                                    <p>Donec scelerisque leo sit amet scelerisque pharetra. Integer mattis, nisl sed rutrum convallis, lorem dui pulvinar mauris, eget dignissim sem </p>
+                                    <div class="social-icon">connect with us on: 
+                                        <span><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i>facebook</a></span>
+                                        <span><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i>twitter</a></span> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <hr />
+                        <div class="row padding-top-lg padding-bottom-lg">
+                            <div class="col-md-4">
+                                <!--Map area start -->
+                                <div id="map"></div>
+                                <!--Map area end -->
+                            </div>
+                            <div class="col-md-8">
+{% block contactform %}
+                                     <div class="panel panel-success">
+                                        <div class="panel-body">
+                                            <div class="well well-lg">
+                                                <h3></h3>
+                                                    <form action="{% url 'shop:contact' %}" method="post">
+                                                        {% csrf_token %}
+                                                    {#    {% bootstrap_form form %} #}
+                                                        {{ form.non_field_errors }}
+                                                           <div>
+                                                              <label for="id_subject">Тема:</label>
+                                                              {{ form.subject.errors }}
+                                                           {#   {{ form.subject }} #}
+                                                                <input class="form-control" id="id_subject" name="subject" placeholder="Тема">
+                                                           </div>
+                                                           <div>
+                                                              <label for="id_sender">E-mail:</label>
+                                                                  {{ form.sender.errors }}
+                                                                  {#  {{ form.sender }} #}
+                                                              <input class="form-control" id="id_sender" name="sender" placeholder="Ваш e-mail">
+                                                           </div>
+                                                            &nbsp;
+                                                            <div>
+                                                              <label for="id_message">Сообщение:</label>
+                                                                  {{ form.message.errors }}
+                                                              {#    {{ form.message }} #}
+                                                              <textarea class="form-control" id="id_message" name="message" placeholder="Введите ваше сообщение"></textarea>
+                                                            </div>
+                                                            &nbsp;
+                                                            <div>
+                                                              {{ form.copy.errors }}
+                                                              <label for="id_copy">{{ form.copy }} Отправить копию себе </label>
+                                                            </div>
+                                                        <br>
+                                                        <input type="submit" class="btn btn-success" value="Отправить сообщение"/>
+                                                    </form>
+                                            </div>
+                                         </div>
+                                     </div>
+{% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Start Footer Section -->
+    <footer>
+        <div id="footer-contact-area">
+            <div class="container">
+                <!-- Contact section -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- Phone Contact -->
+                        <div class="contact-area">
+                            <div class="contact-icon">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-title">Позвони нам:</div>
+                            <div class="contact-velue"> <a href="tel:906-914-6147">906-914-6147</a></div>
+                        </div>
+                        <!-- End Phone Contact -->
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Email Contact -->
+                        <div class="contact-area">
+                            <div class="contact-icon">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-title">Связятся:</div>
+                            <div class="contact-velue"> <a href="mailto:email@alfresco.com">email@alfresco.com</a> </div>
+                        </div>
+                        <!-- End email Contact -->
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Location -->
+                        <div class="contact-area">
+                            <div class="contact-icon">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-title">Location:</div>
+                            <div class="contact-velue">
+                            <a href="//maps.google.com/maps?daddr=40.765819,-73.975866&amp;ll=" target="_blank">New Castle, DE 19720</a></div>
+                        </div>
+                        <!-- End Location -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright area -->
+        <div id="footer-area">
+            <div class="container border-top">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-left" ><strong>Al Fresco</strong> - An eCommerce Restaurant Template</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right" > &copy; Copyright 2016 <a href="http://www.envalab.com/" title="envalab" target="_blank"><strong>envalab</strong></a>. All Right Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- RESERVATION -->
+    <div id="reservation-wrapper">
+        <!-- Modal -->
+        <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-reservation">
+                            <div class="reservation-image-content">
+                                <img src="img/reservation.png" alt="">
+                            </div>
+                            <div class="reservation-form">
+                                <div class="reservation-form-title">
+                                    <h2 class="primery-title">Subtitle here</h2>
+                                    <h3 class="secondery-title">make a reservation</h3>
+                                </div>
+                                <form>
+                                    <div class="form-group col-md-6">
+                                        <label>your name</label>
+                                        <input type="text" class="form-control" placeholder="Put your full Name">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>date and time</label>
+                                        <input type="text" class="form-control date-control" placeholder="23/10/2015">
+                                        <input type="text" class="form-control time-control" placeholder="21:00">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>seats</label>
+                                        <input type="text" class="form-control" placeholder="2 persons">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>email</label>
+                                        <input type="text" class="form-control" placeholder="Your email address">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>specific question</label>
+                                        <textarea class="form-control" rows="4" placeholder="Describe any specific question here..."></textarea>
+                                    </div>
+                                    <div class="form-group col-md-12 text-center">
+                                        <button type="submit" class="btn btn-style-4">send now1</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- .modal-reservation -->
+                    </div><!-- .modal-body -->
+                </div><!-- .modal-content -->
+            </div><!-- .modal-dialog -->
+        </div>
+        <!-- END Modal -->
+    </div>
+{% endblock %}
+    <!-- END RESERVATION -->
+    <!-- Javascript -->
+    <!-- jquery -->
+    <script src="js/vendor/jquery-1.12.0.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- nivo slider -->
+    <script src="../custom-slider/js/jquery.nivo.slider.js" type="text/javascript"></script>
+    <!-- bootstrap select pugins -->
+    <script src="js/bootstrap-select.js"></script>
+    <!-- plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- owl.carousel js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- mean menu plugins -->
+    <script src="js/jquery.meanmenu.js"></script>
+    <!-- nicescroll js -->
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <!-- slick slider ls -->
+    <script src="js/slick.min.js"></script>
+    <!-- isotope js -->
+    <script src="js/isotope.pkgd.js"></script>
+    <script src="js/imagesloaded.pkgd.js"></script>
+    <!-- flex slider -->
+    <script src="js/jquery.flexslider-min.js"></script>
+    <!-- stiky js -->
+    <script src="js/jquery.sticky.js"></script>
+    <!-- Google Map js
+    ============================================ -->
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+                center: {
+                    lat: 23.7808874,
+                    lng: 90.2792365
+                },
+                zoom: 10,
+                scrollwheel: false,
+            });
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                animation: google.maps.Animation.BOUNCE,
+                icon: 'img/map-marker.png',
+                map: map
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5os6oQBtIiHfG4GbiQaaxv5KjC05o8FU&callback=initMap"></script>
+    <!-- main js -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
